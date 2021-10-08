@@ -147,9 +147,9 @@ if __name__ == "__main__":
         
         restore_previous_version(args.account, previous_version_number)
     else:
-        if previous_version_number:
-            current_version_number = previous_version_number + 1
-        else:
+        if previous_version_number is None:
             current_version_number = 0
+        else:
+            current_version_number = previous_version_number + 1
         
         deprecate_current_version(args.account, current_version_number)
