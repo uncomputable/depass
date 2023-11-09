@@ -126,7 +126,7 @@ def move_password(src_account: str, dst_account: str):
     print(dst_account)
 
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(
         description="Deprecate passwords inside the password store",
         epilog="""Deprecated passwords are moved into a separate folder.
@@ -160,3 +160,7 @@ if __name__ == "__main__":
             current_version_number = previous_version_number + 1
         
         deprecate_current_version(args.account, current_version_number)
+
+
+if __name__ == "__main__":
+    main()
