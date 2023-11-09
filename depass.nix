@@ -3,7 +3,7 @@
 }:
 python3.pkgs.buildPythonApplication {
   pname = "depass";
-  version = "0.1";
+  version = "1.0";
 
   src = ./.;
 
