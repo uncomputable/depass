@@ -127,15 +127,22 @@ def move_password(src_account: str, dst_account: str):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Deprecate the current password of a given account "
-                                                 "by moving it to the deprecated folder, "
-                                                 "assigned with a version number for later reference. "
-                                                 "No files are deleted in the process.")
-    parser.add_argument("account",
-                        help="account in password store (as in `pass show`)")
-    parser.add_argument("-r", "--restore", dest="restore", action="store_true",
-                        help="restore the latest deprecated version of the password of the account "
-                             "(if there isn't already a current, non-deprecated version)")
+    parser = argparse.ArgumentParser(
+        description="Deprecate passwords inside the password store",
+        epilog="""Deprecated passwords are moved into a separate folder.
+        Each password is assigned an increasing version number for future reference.
+        No password is ever deleted."""
+    )
+    parser.add_argument(
+        "account",
+        help="account in password store (as in `pass show`)"
+    )
+    parser.add_argument(
+        "-r", "--restore", action="store_true",
+        help="""restore the latest deprecated password
+        (NOP if there is a current password)"""
+    )
+
     args = parser.parse_args()
 
     previous_version_number = get_previous_version_number(args.account)
